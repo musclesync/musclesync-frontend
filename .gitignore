@@ -8,6 +8,7 @@
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
+!.yarn/sdks
 !.yarn/versions
 
 # testing
@@ -32,6 +33,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +41,104 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# diagnostic reports
+report.*.json
+
+# runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# coverage
+coverage
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# grunt
+.grunt
+
+# bower
+bower_components
+
+# compiled addons
+build/Release
+
+# dependency directories
+jspm_packages/
+web_modules/
+
+# optional caches
+.npm
+.eslintcache
+.stylelintcache
+.node_repl_history
+
+# npm pack output
+*.tgz
+
+# yarn integrity
+.yarn-integrity
+
+# parcel
+.cache
+.parcel-cache
+
+# nuxt
+.nuxt
+dist
+.output
+
+# gatsby
+.cache/
+
+# vuepress
+.vuepress/dist
+.temp
+
+# sveltekit
+.svelte-kit/
+
+# vitepress
+**/.vitepress/dist
+**/.vitepress/cache
+
+# docusaurus
+.docusaurus
+
+# serverless
+.serverless/
+
+# fusebox
+.fusebox/
+
+# dynamodb
+.dynamodb/
+
+# firebase
+.firebase/
+
+# ternjs
+.tern-port
+
+# vscode test
+.vscode-test
+
+# pnpm
+.pnpm-store
+
+# vite
+.vite/
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
