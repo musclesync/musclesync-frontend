@@ -1,7 +1,7 @@
-export default function LoginPage() {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex items-center justify-center text-white text-3xl">
-      Login Page
-    </div>
+    <html lang="en">
+      <body className="bg-black text-white">{children}</body>
+    </html>
   );
 }
