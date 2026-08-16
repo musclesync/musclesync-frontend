@@ -19,7 +19,7 @@ export default function Home() {
     const interval = setInterval(() => {
       if (s < 92) s++;
       if (e < 87) e++;
-      if (u < 12000) u += 120;
+      if (u < 15000) u += 150;
       setStrength(s);
       setEndurance(e);
       setUsers(u);
@@ -43,7 +43,7 @@ export default function Home() {
           dark ? "bg-black/30 border-white/10" : "bg-white/40 border-black/10"
         } border-b`}
       >
-        <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
           <h1
             className={`text-3xl font-extrabold tracking-tight cursor-pointer ${
               dark ? "text-orange-500" : "text-orange-600"
@@ -86,45 +86,50 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* HERO */}
+      {/* HERO — 3D Motion */}
       <section className="pt-40 pb-32 text-center relative overflow-hidden">
 
-        {/* 3D Animated Background */}
-        <div
-          className="absolute inset-0 opacity-30 animate-[pulse_6s_ease-in-out_infinite]"
+        {/* Layered Glow */}
+        <div className="absolute inset-0 opacity-40 animate-[pulse_6s_ease-in-out_infinite]"
           style={{
             background:
               "radial-gradient(circle at 20% 30%, rgba(255,100,0,0.25), transparent 60%), radial-gradient(circle at 80% 70%, rgba(255,150,0,0.25), transparent 60%)",
           }}
         ></div>
 
-        {/* Glassmorphism Card */}
+        {/* Parallax Layers */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute w-[600px] h-[600px] bg-orange-500/10 blur-[120px] rounded-full top-10 left-1/4 animate-[float_8s_ease-in-out_infinite]"></div>
+          <div className="absolute w-[500px] h-[500px] bg-orange-300/10 blur-[100px] rounded-full bottom-10 right-1/4 animate-[float_10s_ease-in-out_infinite]"></div>
+        </div>
+
+        {/* Glassmorphism Hero Card */}
         <div
-          className={`mx-auto max-w-3xl p-10 rounded-3xl backdrop-blur-xl border shadow-2xl ${
+          className={`mx-auto max-w-4xl p-12 rounded-3xl backdrop-blur-xl border shadow-2xl ${
             dark ? "bg-white/5 border-white/10" : "bg-white/60 border-black/10"
           }`}
         >
           <h2
-            className={`text-6xl font-extrabold mb-6 tracking-tight ${
+            className={`text-7xl font-extrabold mb-6 tracking-tight ${
               dark ? "text-white" : "text-black"
             }`}
           >
-            AI‑Powered <span className="text-orange-500">Fitness</span> Reinvented.
+            The Future of <span className="text-orange-500">AI Fitness</span>.
           </h2>
 
           <p
-            className={`text-lg leading-relaxed mb-10 ${
+            className={`text-xl leading-relaxed mb-10 ${
               dark ? "text-gray-300" : "text-gray-700"
             }`}
           >
-            Adaptive workout plans, deep analytics, and a premium interface designed for athletes
-            who never settle.
+            Personalized workouts, real‑time analytics, AI coaching, and a premium interface built
+            for athletes who demand excellence.
           </p>
 
           <div className="flex justify-center gap-4">
             <button
               onClick={() => router.push("/dashboard")}
-              className={`px-6 py-3 rounded-xl font-semibold hover:scale-110 transition shadow-lg ${
+              className={`px-8 py-4 rounded-xl font-semibold hover:scale-110 transition shadow-lg ${
                 dark ? "bg-orange-500 text-black" : "bg-orange-600 text-white"
               }`}
             >
@@ -133,7 +138,7 @@ export default function Home() {
 
             <button
               onClick={() => router.push("/register")}
-              className={`px-6 py-3 rounded-xl border transition ${
+              className={`px-8 py-4 rounded-xl border transition ${
                 dark
                   ? "border-white/20 hover:border-orange-500 hover:text-orange-500 text-gray-300"
                   : "border-black/20 hover:border-orange-600 hover:text-orange-600 text-gray-700"
@@ -145,24 +150,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI CHAT PREVIEW */}
-      <section className="max-w-6xl mx-auto px-6 pb-32">
-        <h2 className="text-center text-4xl font-extrabold mb-10">
-          MuscleSync <span className="text-orange-500">AI Coach</span>
+      {/* AI VOICE COACH PREVIEW */}
+      <section className="max-w-7xl mx-auto px-6 pb-32">
+        <h2 className="text-center text-5xl font-extrabold mb-10">
+          AI <span className="text-orange-500">Voice Coach</span>
         </h2>
 
         <div
-          className={`p-8 rounded-3xl backdrop-blur-xl border shadow-xl ${
+          className={`p-10 rounded-3xl backdrop-blur-xl border shadow-xl ${
             dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
           }`}
         >
+          <p className={`text-lg mb-6 ${dark ? "text-gray-300" : "text-gray-700"}`}>
+            MuscleSync’s AI Voice Coach gives real‑time feedback during your workouts.
+          </p>
+
           <div className="space-y-4">
             <div
               className={`p-4 rounded-xl w-fit ${
                 dark ? "bg-orange-500 text-black" : "bg-orange-600 text-white"
               }`}
             >
-              AI: “Welcome back! Ready for today’s workout?”
+              AI: “Keep your elbows tucked. Perfect form!”
             </div>
 
             <div
@@ -170,7 +179,7 @@ export default function Home() {
                 dark ? "bg-white/10 text-gray-300" : "bg-white text-gray-700"
               }`}
             >
-              You: “Yes, give me a strength‑focused routine.”
+              You: “Increase intensity by 10%.”
             </div>
 
             <div
@@ -178,80 +187,134 @@ export default function Home() {
                 dark ? "bg-orange-500 text-black" : "bg-orange-600 text-white"
               }`}
             >
-              AI: “Perfect. Here’s your optimized plan for today.”
+              AI: “Intensity increased. Stay controlled.”
             </div>
           </div>
         </div>
       </section>
 
-      {/* WORKOUT GENERATOR PREVIEW */}
-      <section className="max-w-6xl mx-auto px-6 pb-32">
-        <h2 className="text-center text-4xl font-extrabold mb-10">
-          Smart <span className="text-orange-500">Workout Generator</span>
+      {/* MUSCLE MAP HEAT VISUALIZATION */}
+      <section className="max-w-7xl mx-auto px-6 pb-32">
+        <h2 className="text-center text-5xl font-extrabold mb-10">
+          Muscle <span className="text-orange-500">Heat Map</span>
         </h2>
 
         <div
-          className={`p-8 rounded-3xl backdrop-blur-xl border shadow-xl ${
+          className={`p-10 rounded-3xl backdrop-blur-xl border shadow-xl ${
             dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
           }`}
         >
-          <ul className="space-y-4 text-lg">
-            <li className="font-semibold">🔥 Bench Press — 4 sets × 6 reps</li>
-            <li className="font-semibold">💪 Dumbbell Shoulder Press — 3 sets × 10 reps</li>
-            <li className="font-semibold">🏋️ Barbell Row — 4 sets × 8 reps</li>
-            <li className="font-semibold">🔗 Tricep Rope Pushdown — 3 sets × 12 reps</li>
-          </ul>
+          <p className={`text-lg mb-6 ${dark ? "text-gray-300" : "text-gray-700"}`}>
+            See which muscle groups you’ve activated the most this week.
+          </p>
 
-          <button
-            onClick={() => router.push("/dashboard")}
-            className={`mt-6 px-6 py-3 rounded-xl font-semibold hover:scale-110 transition shadow-lg ${
-              dark ? "bg-orange-500 text-black" : "bg-orange-600 text-white"
-            }`}
-          >
-            Generate My Plan
-          </button>
+          <div className="grid grid-cols-3 gap-6 text-center">
+            {[
+              { muscle: "Chest", heat: "🔥🔥🔥" },
+              { muscle: "Back", heat: "🔥🔥" },
+              { muscle: "Legs", heat: "🔥🔥🔥🔥" },
+              { muscle: "Shoulders", heat: "🔥🔥" },
+              { muscle: "Arms", heat: "🔥🔥🔥" },
+              { muscle: "Core", heat: "🔥🔥🔥" },
+            ].map((m, i) => (
+              <div
+                key={i}
+                className={`p-6 rounded-xl backdrop-blur-xl border shadow ${
+                  dark ? "bg-white/10 border-white/20" : "bg-white border-black/10"
+                }`}
+              >
+                <h3 className="text-xl font-bold text-orange-500">{m.muscle}</h3>
+                <p className={dark ? "text-gray-300" : "text-gray-700"}>{m.heat}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ANIMATED STATS */}
-      <section className="max-w-6xl mx-auto px-6 pb-32 grid md:grid-cols-3 gap-10 text-center">
-        <div
-          className={`p-8 rounded-2xl backdrop-blur-xl border shadow-xl ${
-            dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
-          }`}
-        >
-          <h3 className="text-5xl font-extrabold text-orange-500">{strength}%</h3>
-          <p className={dark ? "text-gray-300" : "text-gray-700"}>Strength Increase</p>
-        </div>
+      {/* FAQ ACCORDION */}
+      <section className="max-w-7xl mx-auto px-6 pb-32">
+        <h2 className="text-center text-5xl font-extrabold mb-10">
+          Frequently <span className="text-orange-500">Asked</span> Questions
+        </h2>
 
-        <div
-          className={`p-8 rounded-2xl backdrop-blur-xl border shadow-xl ${
-            dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
-          }`}
-        >
-          <h3 className="text-5xl font-extrabold text-orange-500">{endurance}%</h3>
-          <p className={dark ? "text-gray-300" : "text-gray-700"}>Endurance Boost</p>
-        </div>
-
-        <div
-          className={`p-8 rounded-2xl backdrop-blur-xl border shadow-xl ${
-            dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
-          }`}
-        >
-          <h3 className="text-5xl font-extrabold text-orange-500">
-            {users.toLocaleString()}
-          </h3>
-          <p className={dark ? "text-gray-300" : "text-gray-700"}>Active Users</p>
+        <div className="space-y-6">
+          {[
+            {
+              q: "How does the AI generate workouts?",
+              a: "MuscleSync analyzes your performance, history, and goals to create adaptive routines.",
+            },
+            {
+              q: "Is the platform beginner‑friendly?",
+              a: "Absolutely. The AI adjusts intensity and complexity based on your level.",
+            },
+            {
+              q: "Can I track my progress?",
+              a: "Yes. The analytics dashboard shows strength, endurance, volume, and more.",
+            },
+          ].map((item, i) => (
+            <details
+              key={i}
+              className={`p-6 rounded-xl backdrop-blur-xl border ${
+                dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
+              }`}
+            >
+              <summary className="cursor-pointer text-xl font-semibold text-orange-500">
+                {item.q}
+              </summary>
+              <p className={`mt-4 ${dark ? "text-gray-300" : "text-gray-700"}`}>{item.a}</p>
+            </details>
+          ))}
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* FOOTER 3.0 */}
       <footer
-        className={`text-center py-10 border-t ${
+        className={`py-16 border-t ${
           dark ? "border-white/10 text-gray-400" : "border-black/10 text-gray-700"
         }`}
       >
-        © 2026 MuscleSync — AI Fitness Reinvented.
+        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 px-6">
+
+          <div>
+            <h3 className="text-2xl font-bold text-orange-500 mb-4">MuscleSync</h3>
+            <p className="text-sm">
+              The next generation AI fitness platform for athletes who demand excellence.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-3">Product</h4>
+            <ul className="space-y-2 text-sm">
+              <li>AI Coach</li>
+              <li>Workout Generator</li>
+              <li>Analytics Dashboard</li>
+              <li>Muscle Heat Map</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-3">Company</h4>
+            <ul className="space-y-2 text-sm">
+              <li>About</li>
+              <li>Careers</li>
+              <li>Contact</li>
+              <li>Blog</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold mb-3">Legal</h4>
+            <ul className="space-y-2 text-sm">
+              <li>Privacy Policy</li>
+              <li>Terms of Service</li>
+              <li>Cookies</li>
+            </ul>
+          </div>
+        </div>
+
+        <p className="text-center mt-10 text-sm">
+          © 2026 MuscleSync — AI Fitness Reinvented.
+        </p>
       </footer>
     </main>
   );
