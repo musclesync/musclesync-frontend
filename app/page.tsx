@@ -3,13 +3,13 @@ import React from "react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0a0a1a] to-[#0f3b3b] text-white font-poppins">
+    <main className="min-h-screen bg-gradient-to-br from-black to-[#1a1a1a] text-white font-poppins">
       {/* Navbar */}
-      <nav className="flex justify-between items-center px-8 py-4 backdrop-blur-md bg-white/5 fixed w-full top-0 z-50">
-        <h1 className="text-2xl font-bold text-neon">MuscleSync</h1>
+      <nav className="flex justify-between items-center px-8 py-4 bg-black/70 backdrop-blur-md fixed w-full top-0 z-50">
+        <h1 className="text-2xl font-bold text-orange-500">MuscleSync</h1>
         <div className="space-x-4">
-          <button className="hover:text-neon transition">Login</button>
-          <button className="bg-neon text-black px-4 py-2 rounded-lg hover:scale-105 transition">
+          <button className="hover:text-orange-400 transition">Login</button>
+          <button className="bg-orange-500 text-black px-4 py-2 rounded-lg hover:scale-105 transition">
             Get Started
           </button>
         </div>
@@ -18,12 +18,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center pt-32 pb-20">
         <h2 className="text-5xl font-extrabold mb-4 animate-fadeIn">
-          Train Smarter. Move Faster. <span className="text-neon">Sync Strong.</span>
+          Push Harder. <span className="text-orange-500">Train Smarter.</span>
         </h2>
         <p className="text-lg text-gray-300 max-w-xl animate-slideUp">
-          AI‑powered workouts, real‑time analytics, and personalized coaching for unstoppable progress.
+          AI‑powered workouts and analytics designed for athletes who never settle.
         </p>
-        <button className="mt-8 bg-neon text-black px-6 py-3 rounded-lg font-semibold hover:scale-110 transition">
+        <button className="mt-8 bg-orange-500 text-black px-6 py-3 rounded-lg font-semibold hover:scale-110 transition">
           Start Free
         </button>
       </section>
@@ -37,9 +37,9 @@ export default function Home() {
         ].map((item, i) => (
           <div
             key={i}
-            className="bg-white/10 p-6 rounded-xl shadow-lg hover:translate-y-[-5px] transition animate-slideUp"
+            className="bg-[#1a1a1a] p-6 rounded-xl shadow-lg hover:translate-y-[-5px] transition animate-slideUp border border-orange-500/30"
           >
-            <h3 className="text-xl font-bold text-neon mb-2">{item.title}</h3>
+            <h3 className="text-xl font-bold text-orange-400 mb-2">{item.title}</h3>
             <p className="text-gray-300">{item.desc}</p>
           </div>
         ))}

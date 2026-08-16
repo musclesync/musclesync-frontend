@@ -15,6 +15,6 @@
 .animate-fadeIn { animation: fadeIn 1.2s ease forwards; }
 .animate-slideUp { animation: slideUp 1.2s ease forwards; }
 
-.text-neon { color: #00ffcc; }
-.bg-neon { background-color: #00ffcc; }
+.text-orange { color: #ff6600; }
+.bg-orange { background-color: #ff6600; }
 .font-poppins { font-family: 'Poppins', sans-serif; }
