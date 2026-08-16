@@ -1,18 +1,7 @@
-"use client";
-
-import React from "react";
-
-const RegisterPage = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // register logic
-  };
-
+export default function RegisterPage() {
   return (
-    <form onSubmit={handleSubmit}>
-      {/* form fields */}
-    </form>
+    <div className="min-h-screen flex items-center justify-center text-white text-3xl">
+      Register Page
+    </div>
   );
-};
-
-export default RegisterPage;
+}

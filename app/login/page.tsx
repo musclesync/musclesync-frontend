@@ -1,18 +1,7 @@
-"use client";
-
-import React from "react";
-
-const LoginPage = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // login logic
-  };
-
+export default function LoginPage() {
   return (
-    <form onSubmit={handleSubmit}>
-      {/* form fields */}
-    </form>
+    <div className="min-h-screen flex items-center justify-center text-white text-3xl">
+      Login Page
+    </div>
   );
-};
-
-export default LoginPage;
+}
