@@ -1,14 +1,24 @@
+"use client";
+import Link from "next/link";
+
 export default function Navbar() {
   return (
-    <nav className="w-full flex items-center justify-between py-4 px-6 bg-white shadow-sm">
-      <div className="text-2xl font-bold text-gray-900">
+    <nav className="flex justify-between items-center px-8 py-4 bg-black text-white">
+      <Link href="/" className="text-2xl font-bold text-orange-500">
         MuscleSync
-      </div>
+      </Link>
 
-      <div className="flex gap-6 text-gray-700 font-medium">
-        <a href="/" className="hover:text-black">Home</a>
-        <a href="/login" className="hover:text-black">Login</a>
-        <a href="/register" className="hover:text-black">Register</a>
+      <div className="space-x-4">
+        <Link href="/login" className="hover:text-orange-400 transition">
+          Login
+        </Link>
+
+        <Link
+          href="/register"
+          className="bg-orange-500 text-black px-4 py-2 rounded-lg hover:scale-105 transition"
+        >
+          Get Started
+        </Link>
       </div>
     </nav>
   );
