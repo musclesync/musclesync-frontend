@@ -20,7 +20,11 @@ ChartJS.register(
   Legend
 );
 
-export default function ProgressCharts({ weeklyVolume }) {
+interface ProgressChartsProps {
+  weeklyVolume: number[];
+}
+
+export default function ProgressCharts({ weeklyVolume }: ProgressChartsProps) {
   const data = {
     labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
     datasets: [
