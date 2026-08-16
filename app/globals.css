@@ -2,13 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* GLOBAL RESET */
-body {
-  margin: 0;
-  padding: 0;
+/* senin animasyonların */
+.fadeIn {
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
 }
+.slideUp {
+  animation: slideUp 1s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.delay200 { animation-delay: 0.2s; }
+.delay300 { animation-delay: 0.3s; }
 
-/* ANIMATIONS */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
