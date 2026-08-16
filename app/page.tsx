@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const router = useRouter();
 
+  // Dark/Light Mode
+  const [dark, setDark] = useState(true);
+
   // Animated Stats
   const [strength, setStrength] = useState(0);
   const [endurance, setEndurance] = useState(0);
@@ -26,29 +29,56 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-black via-[#0a0a0a] to-[#1a1a1a] text-white font-poppins">
+    <main
+      className={`min-h-screen ${
+        dark
+          ? "bg-gradient-to-br from-black via-[#0a0a0a] to-[#1a1a1a] text-white"
+          : "bg-gradient-to-br from-white via-[#f4f4f4] to-[#e8e8e8] text-black"
+      } font-poppins transition-all duration-500`}
+    >
 
       {/* NAVBAR */}
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-xl bg-black/30 border-b border-white/10">
+      <nav
+        className={`fixed top-0 w-full z-50 backdrop-blur-xl ${
+          dark ? "bg-black/30 border-white/10" : "bg-white/40 border-black/10"
+        } border-b`}
+      >
         <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
           <h1
-            className="text-3xl font-extrabold text-orange-500 tracking-tight cursor-pointer"
+            className={`text-3xl font-extrabold tracking-tight cursor-pointer ${
+              dark ? "text-orange-500" : "text-orange-600"
+            }`}
             onClick={() => router.push("/")}
           >
             MuscleSync
           </h1>
 
-          <div className="flex gap-6 text-gray-300">
+          <div className="flex gap-6 items-center">
+            <button
+              onClick={() => setDark(!dark)}
+              className={`px-4 py-2 rounded-lg border ${
+                dark
+                  ? "border-white/20 text-gray-300 hover:border-orange-500 hover:text-orange-500"
+                  : "border-black/20 text-gray-700 hover:border-orange-600 hover:text-orange-600"
+              } transition`}
+            >
+              {dark ? "Light Mode" : "Dark Mode"}
+            </button>
+
             <button
               onClick={() => router.push("/login")}
-              className="hover:text-orange-400 transition"
+              className={`transition ${
+                dark ? "hover:text-orange-400 text-gray-300" : "hover:text-orange-600 text-gray-700"
+              }`}
             >
               Login
             </button>
 
             <button
               onClick={() => router.push("/register")}
-              className="bg-orange-500 text-black px-5 py-2 rounded-lg font-semibold hover:scale-105 transition"
+              className={`px-5 py-2 rounded-lg font-semibold hover:scale-105 transition ${
+                dark ? "bg-orange-500 text-black" : "bg-orange-600 text-white"
+              }`}
             >
               Get Started
             </button>
@@ -58,30 +88,56 @@ export default function Home() {
 
       {/* HERO */}
       <section className="pt-40 pb-32 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff660020,transparent)] animate-pulse"></div>
 
-        <div className="mx-auto max-w-3xl p-10 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
-          <h2 className="text-6xl font-extrabold mb-6 tracking-tight animate-[fadeIn_1s_ease]">
-            Train <span className="text-orange-500">Smarter</span>,  
-            Get <span className="text-orange-500">Stronger</span>.
+        {/* 3D Animated Background */}
+        <div
+          className="absolute inset-0 opacity-30 animate-[pulse_6s_ease-in-out_infinite]"
+          style={{
+            background:
+              "radial-gradient(circle at 20% 30%, rgba(255,100,0,0.25), transparent 60%), radial-gradient(circle at 80% 70%, rgba(255,150,0,0.25), transparent 60%)",
+          }}
+        ></div>
+
+        {/* Glassmorphism Card */}
+        <div
+          className={`mx-auto max-w-3xl p-10 rounded-3xl backdrop-blur-xl border shadow-2xl ${
+            dark ? "bg-white/5 border-white/10" : "bg-white/60 border-black/10"
+          }`}
+        >
+          <h2
+            className={`text-6xl font-extrabold mb-6 tracking-tight ${
+              dark ? "text-white" : "text-black"
+            }`}
+          >
+            AI‑Powered <span className="text-orange-500">Fitness</span> Reinvented.
           </h2>
 
-          <p className="text-gray-300 text-lg leading-relaxed mb-10 animate-[slideUp_1s_ease]">
-            A next‑generation AI fitness platform with adaptive workout plans,  
-            deep analytics, and a premium modern interface.
+          <p
+            className={`text-lg leading-relaxed mb-10 ${
+              dark ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
+            Adaptive workout plans, deep analytics, and a premium interface designed for athletes
+            who never settle.
           </p>
 
           <div className="flex justify-center gap-4">
             <button
               onClick={() => router.push("/dashboard")}
-              className="px-6 py-3 rounded-xl bg-orange-500 text-black font-semibold hover:scale-110 transition shadow-lg"
+              className={`px-6 py-3 rounded-xl font-semibold hover:scale-110 transition shadow-lg ${
+                dark ? "bg-orange-500 text-black" : "bg-orange-600 text-white"
+              }`}
             >
               Start Free
             </button>
 
             <button
               onClick={() => router.push("/register")}
-              className="px-6 py-3 rounded-xl border border-white/20 hover:border-orange-500 hover:text-orange-500 transition"
+              className={`px-6 py-3 rounded-xl border transition ${
+                dark
+                  ? "border-white/20 hover:border-orange-500 hover:text-orange-500 text-gray-300"
+                  : "border-black/20 hover:border-orange-600 hover:text-orange-600 text-gray-700"
+              }`}
             >
               Create Account
             </button>
@@ -89,105 +145,113 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6 pb-32">
-        {[
-          {
-            title: "Adaptive AI Plans",
-            desc: "Workouts that evolve with your performance and goals.",
-          },
-          {
-            title: "Deep Analytics",
-            desc: "Track strength, endurance, volume, and progress with precision.",
-          },
-          {
-            title: "Premium UI",
-            desc: "Glassmorphism, gradients, animations — a modern fitness experience.",
-          },
-        ].map((item, i) => (
-          <div
-            key={i}
-            className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl hover:scale-105 hover:border-orange-500 transition"
-          >
-            <h3 className="text-2xl font-bold text-orange-400 mb-3">{item.title}</h3>
-            <p className="text-gray-300">{item.desc}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* AI DEMO SECTION */}
-      <section className="max-w-6xl mx-auto px-6 pb-32 text-center">
-        <h2 className="text-4xl font-extrabold mb-10">
-          Experience <span className="text-orange-500">AI Power</span>
+      {/* AI CHAT PREVIEW */}
+      <section className="max-w-6xl mx-auto px-6 pb-32">
+        <h2 className="text-center text-4xl font-extrabold mb-10">
+          MuscleSync <span className="text-orange-500">AI Coach</span>
         </h2>
 
-        <div className="p-10 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl">
-          <p className="text-gray-300 text-lg mb-6">
-            MuscleSync analyzes your performance and generates personalized workout plans instantly.
-          </p>
+        <div
+          className={`p-8 rounded-3xl backdrop-blur-xl border shadow-xl ${
+            dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
+          }`}
+        >
+          <div className="space-y-4">
+            <div
+              className={`p-4 rounded-xl w-fit ${
+                dark ? "bg-orange-500 text-black" : "bg-orange-600 text-white"
+              }`}
+            >
+              AI: “Welcome back! Ready for today’s workout?”
+            </div>
+
+            <div
+              className={`p-4 rounded-xl w-fit ml-auto ${
+                dark ? "bg-white/10 text-gray-300" : "bg-white text-gray-700"
+              }`}
+            >
+              You: “Yes, give me a strength‑focused routine.”
+            </div>
+
+            <div
+              className={`p-4 rounded-xl w-fit ${
+                dark ? "bg-orange-500 text-black" : "bg-orange-600 text-white"
+              }`}
+            >
+              AI: “Perfect. Here’s your optimized plan for today.”
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WORKOUT GENERATOR PREVIEW */}
+      <section className="max-w-6xl mx-auto px-6 pb-32">
+        <h2 className="text-center text-4xl font-extrabold mb-10">
+          Smart <span className="text-orange-500">Workout Generator</span>
+        </h2>
+
+        <div
+          className={`p-8 rounded-3xl backdrop-blur-xl border shadow-xl ${
+            dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
+          }`}
+        >
+          <ul className="space-y-4 text-lg">
+            <li className="font-semibold">🔥 Bench Press — 4 sets × 6 reps</li>
+            <li className="font-semibold">💪 Dumbbell Shoulder Press — 3 sets × 10 reps</li>
+            <li className="font-semibold">🏋️ Barbell Row — 4 sets × 8 reps</li>
+            <li className="font-semibold">🔗 Tricep Rope Pushdown — 3 sets × 12 reps</li>
+          </ul>
 
           <button
             onClick={() => router.push("/dashboard")}
-            className="px-6 py-3 rounded-xl bg-orange-500 text-black font-semibold hover:scale-110 transition shadow-lg"
+            className={`mt-6 px-6 py-3 rounded-xl font-semibold hover:scale-110 transition shadow-lg ${
+              dark ? "bg-orange-500 text-black" : "bg-orange-600 text-white"
+            }`}
           >
-            Try AI Demo
+            Generate My Plan
           </button>
         </div>
       </section>
 
       {/* ANIMATED STATS */}
       <section className="max-w-6xl mx-auto px-6 pb-32 grid md:grid-cols-3 gap-10 text-center">
-        <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl">
+        <div
+          className={`p-8 rounded-2xl backdrop-blur-xl border shadow-xl ${
+            dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
+          }`}
+        >
           <h3 className="text-5xl font-extrabold text-orange-500">{strength}%</h3>
-          <p className="text-gray-300 mt-2">Strength Increase</p>
+          <p className={dark ? "text-gray-300" : "text-gray-700"}>Strength Increase</p>
         </div>
 
-        <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl">
+        <div
+          className={`p-8 rounded-2xl backdrop-blur-xl border shadow-xl ${
+            dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
+          }`}
+        >
           <h3 className="text-5xl font-extrabold text-orange-500">{endurance}%</h3>
-          <p className="text-gray-300 mt-2">Endurance Boost</p>
+          <p className={dark ? "text-gray-300" : "text-gray-700"}>Endurance Boost</p>
         </div>
 
-        <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl">
-          <h3 className="text-5xl font-extrabold text-orange-500">{users.toLocaleString()}</h3>
-          <p className="text-gray-300 mt-2">Active Users</p>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="max-w-6xl mx-auto px-6 pb-32">
-        <h2 className="text-center text-4xl font-extrabold mb-12">
-          Loved by <span className="text-orange-500">Athletes</span>
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-10">
-          {[
-            {
-              name: "Alex Carter",
-              text: "MuscleSync completely transformed my training. The AI plans are insane.",
-            },
-            {
-              name: "Jordan Miles",
-              text: "The analytics helped me break plateaus I struggled with for years.",
-            },
-            {
-              name: "Chris Walker",
-              text: "This is the future of fitness. Clean UI, powerful AI, everything works.",
-            },
-          ].map((t, i) => (
-            <div
-              key={i}
-              className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl hover:scale-105 transition"
-            >
-              <p className="text-gray-300 mb-4">“{t.text}”</p>
-              <h3 className="text-orange-400 font-bold">{t.name}</h3>
-            </div>
-          ))}
+        <div
+          className={`p-8 rounded-2xl backdrop-blur-xl border shadow-xl ${
+            dark ? "bg-white/5 border-white/10" : "bg-white/70 border-black/10"
+          }`}
+        >
+          <h3 className="text-5xl font-extrabold text-orange-500">
+            {users.toLocaleString()}
+          </h3>
+          <p className={dark ? "text-gray-300" : "text-gray-700"}>Active Users</p>
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="text-center py-10 text-gray-500 border-t border-white/10">
-        © 2026 MuscleSync — Ultra Modern Fitness Platform.
+      <footer
+        className={`text-center py-10 border-t ${
+          dark ? "border-white/10 text-gray-400" : "border-black/10 text-gray-700"
+        }`}
+      >
+        © 2026 MuscleSync — AI Fitness Reinvented.
       </footer>
     </main>
   );
