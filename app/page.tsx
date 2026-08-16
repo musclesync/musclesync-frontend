@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -24,7 +25,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center pt-32 pb-20 relative">
+      <section className="flex flex-col items-center justify-center text-center pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff660010,transparent)] animate-pulse"></div>
         <h2 className="text-5xl font-extrabold mb-4 animate-fadeIn">
           Push Harder. <span className="text-orange-500">Train Smarter.</span>
@@ -32,7 +33,11 @@ export default function Home() {
         <p className="text-lg text-gray-300 max-w-xl animate-slideUp">
           AI‑powered workouts and analytics designed for athletes who never settle.
         </p>
-        <button className="mt-8 bg-orange-500 text-black px-6 py-3 rounded-lg font-semibold hover:scale-110 transition animate-bounce">
+        <button
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          className={`mt-8 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${hovered ? "bg-black text-orange-500 border border-orange-500 scale-110" : "bg-orange-500 text-black"}`}
+        >
           Start Free
         </button>
       </section>
@@ -46,7 +51,7 @@ export default function Home() {
         ].map((item, i) => (
           <div
             key={i}
-            className="bg-[#1a1a1a] p-6 rounded-xl shadow-lg hover:translate-y-[-10px] transition-all duration-500 animate-slideUp border border-orange-500/30 hover:border-orange-500"
+            className="bg-[#1a1a1a] p-6 rounded-xl shadow-lg hover:translate-y-[-10px] hover:shadow-orange-500/40 transition-all duration-500 animate-slideUp border border-orange-500/30 hover:border-orange-500"
           >
             <h3 className="text-xl font-bold text-orange-400 mb-2">{item.title}</h3>
             <p className="text-gray-300">{item.desc}</p>
@@ -55,7 +60,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="text-center py-6 border-t border-orange-500/20 text-gray-400">
+      <footer className="text-center py-6 border-t border-orange-500/20 text-gray-400 animate-fadeIn">
         © 2026 MuscleSync. All rights reserved.
       </footer>
     </main>
