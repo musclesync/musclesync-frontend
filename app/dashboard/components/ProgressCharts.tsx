@@ -1,7 +1,25 @@
 "use client";
 
-import { Line } from "react-chartjs-2";
 import { useEffect, useState } from "react";
+import {
+  Chart as ChartJS,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+
+ChartJS.register(
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend
+);
 
 export default function ProgressCharts() {
   const [data, setData] = useState<any>(null);
@@ -32,6 +50,7 @@ export default function ProgressCharts() {
               data: data.weeklyVolume,
               borderColor: "orange",
               backgroundColor: "rgba(255,165,0,0.2)",
+              tension: 0.4,
             },
           ],
         }}
