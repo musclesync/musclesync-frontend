@@ -15,23 +15,22 @@ ChartJS.register(
   LineElement,
   CategoryScale,
   LinearScale,
-  LinearScale,
   PointElement,
   Tooltip,
   Legend
 );
 
 interface ProgressChartsProps {
-  weeklyVolume?: number[]; // ⭐ OPSİYONEL YAPTIK
+  weeklyVolume?: number[]; // ⭐ OPSİYONEL
 }
 
-export default function ProgressCharts({ weeklyVolume = [] }: ProgressChartsProps) {
+export default function ProgressCharts({ weeklyVolume = [0, 0, 0, 0] }: ProgressChartsProps) {
   const data = {
     labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
     datasets: [
       {
         label: "Weekly Volume",
-        data: weeklyVolume.length ? weeklyVolume : [0, 0, 0, 0],
+        data: weeklyVolume,
         borderColor: "#3b82f6",
         backgroundColor: "rgba(59,130,246,0.3)",
       },
