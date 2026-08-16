@@ -2,19 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* senin animasyonların */
-.fadeIn {
-  animation: fadeIn 1s ease forwards;
-  opacity: 0;
-}
-.slideUp {
-  animation: slideUp 1s ease forwards;
-  opacity: 0;
-  transform: translateY(20px);
-}
-.delay200 { animation-delay: 0.2s; }
-.delay300 { animation-delay: 0.3s; }
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -24,3 +11,10 @@
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+.animate-fadeIn { animation: fadeIn 1.2s ease forwards; }
+.animate-slideUp { animation: slideUp 1.2s ease forwards; }
+
+.text-neon { color: #00ffcc; }
+.bg-neon { background-color: #00ffcc; }
+.font-poppins { font-family: 'Poppins', sans-serif; }
