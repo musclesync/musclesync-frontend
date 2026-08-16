@@ -1,8 +1,29 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+
+  // Animated Stats
+  const [strength, setStrength] = useState(0);
+  const [endurance, setEndurance] = useState(0);
+  const [users, setUsers] = useState(0);
+
+  useEffect(() => {
+    let s = 0, e = 0, u = 0;
+
+    const interval = setInterval(() => {
+      if (s < 92) s++;
+      if (e < 87) e++;
+      if (u < 12000) u += 120;
+      setStrength(s);
+      setEndurance(e);
+      setUsers(u);
+    }, 20);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-black via-[#0a0a0a] to-[#1a1a1a] text-white font-poppins">
@@ -37,11 +58,8 @@ export default function Home() {
 
       {/* HERO */}
       <section className="pt-40 pb-32 text-center relative overflow-hidden">
-
-        {/* Gradient Glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff660020,transparent)] animate-pulse"></div>
 
-        {/* Glassmorphism Card */}
         <div className="mx-auto max-w-3xl p-10 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl">
           <h2 className="text-6xl font-extrabold mb-6 tracking-tight animate-[fadeIn_1s_ease]">
             Train <span className="text-orange-500">Smarter</span>,  
@@ -73,7 +91,6 @@ export default function Home() {
 
       {/* FEATURES */}
       <section className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 px-6 pb-32">
-
         {[
           {
             title: "Adaptive AI Plans",
@@ -98,73 +115,73 @@ export default function Home() {
         ))}
       </section>
 
-      {/* PRICING SECTION */}
+      {/* AI DEMO SECTION */}
+      <section className="max-w-6xl mx-auto px-6 pb-32 text-center">
+        <h2 className="text-4xl font-extrabold mb-10">
+          Experience <span className="text-orange-500">AI Power</span>
+        </h2>
+
+        <div className="p-10 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl">
+          <p className="text-gray-300 text-lg mb-6">
+            MuscleSync analyzes your performance and generates personalized workout plans instantly.
+          </p>
+
+          <button
+            onClick={() => router.push("/dashboard")}
+            className="px-6 py-3 rounded-xl bg-orange-500 text-black font-semibold hover:scale-110 transition shadow-lg"
+          >
+            Try AI Demo
+          </button>
+        </div>
+      </section>
+
+      {/* ANIMATED STATS */}
+      <section className="max-w-6xl mx-auto px-6 pb-32 grid md:grid-cols-3 gap-10 text-center">
+        <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl">
+          <h3 className="text-5xl font-extrabold text-orange-500">{strength}%</h3>
+          <p className="text-gray-300 mt-2">Strength Increase</p>
+        </div>
+
+        <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl">
+          <h3 className="text-5xl font-extrabold text-orange-500">{endurance}%</h3>
+          <p className="text-gray-300 mt-2">Endurance Boost</p>
+        </div>
+
+        <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl">
+          <h3 className="text-5xl font-extrabold text-orange-500">{users.toLocaleString()}</h3>
+          <p className="text-gray-300 mt-2">Active Users</p>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
       <section className="max-w-6xl mx-auto px-6 pb-32">
-        <h2 className="text-center text-4xl font-extrabold mb-12 tracking-tight">
-          Choose Your <span className="text-orange-500">Plan</span>
+        <h2 className="text-center text-4xl font-extrabold mb-12">
+          Loved by <span className="text-orange-500">Athletes</span>
         </h2>
 
         <div className="grid md:grid-cols-3 gap-10">
-
-          {/* FREE PLAN */}
-          <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl hover:scale-105 transition">
-            <h3 className="text-2xl font-bold mb-4">Free</h3>
-            <p className="text-gray-300 mb-6">Start your fitness journey with basic AI workouts.</p>
-
-            <ul className="text-gray-400 space-y-2 mb-6">
-              <li>✔ Basic AI Plans</li>
-              <li>✔ Limited Analytics</li>
-              <li>✔ Community Access</li>
-            </ul>
-
-            <button
-              onClick={() => router.push("/register")}
-              className="w-full bg-orange-500 text-black py-3 rounded-xl font-semibold hover:scale-105 transition"
+          {[
+            {
+              name: "Alex Carter",
+              text: "MuscleSync completely transformed my training. The AI plans are insane.",
+            },
+            {
+              name: "Jordan Miles",
+              text: "The analytics helped me break plateaus I struggled with for years.",
+            },
+            {
+              name: "Chris Walker",
+              text: "This is the future of fitness. Clean UI, powerful AI, everything works.",
+            },
+          ].map((t, i) => (
+            <div
+              key={i}
+              className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl hover:scale-105 transition"
             >
-              Get Started
-            </button>
-          </div>
-
-          {/* PRO PLAN */}
-          <div className="p-8 rounded-2xl bg-gradient-to-br from-orange-600/20 to-orange-400/10 backdrop-blur-xl border border-orange-500/40 shadow-2xl hover:scale-105 transition">
-            <h3 className="text-2xl font-bold mb-4 text-orange-400">Pro</h3>
-            <p className="text-gray-300 mb-6">Unlock full AI power with adaptive training and deep analytics.</p>
-
-            <ul className="text-gray-300 space-y-2 mb-6">
-              <li>✔ Adaptive AI Plans</li>
-              <li>✔ Full Analytics Dashboard</li>
-              <li>✔ Nutrition AI</li>
-              <li>✔ Priority Support</li>
-            </ul>
-
-            <button
-              onClick={() => router.push("/register")}
-              className="w-full bg-orange-500 text-black py-3 rounded-xl font-semibold hover:scale-110 transition shadow-lg"
-            >
-              Upgrade Now
-            </button>
-          </div>
-
-          {/* ELITE PLAN */}
-          <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl hover:scale-105 transition">
-            <h3 className="text-2xl font-bold mb-4">Elite</h3>
-            <p className="text-gray-300 mb-6">For athletes who want maximum performance and personalization.</p>
-
-            <ul className="text-gray-400 space-y-2 mb-6">
-              <li>✔ Personalized AI Coaching</li>
-              <li>✔ Advanced Performance Metrics</li>
-              <li>✔ Custom Meal Plans</li>
-              <li>✔ 1-on-1 Expert Support</li>
-            </ul>
-
-            <button
-              onClick={() => router.push("/register")}
-              className="w-full border border-orange-500 py-3 rounded-xl font-semibold hover:bg-orange-500 hover:text-black transition"
-            >
-              Go Elite
-            </button>
-          </div>
-
+              <p className="text-gray-300 mb-4">“{t.text}”</p>
+              <h3 className="text-orange-400 font-bold">{t.name}</h3>
+            </div>
+          ))}
         </div>
       </section>
 
