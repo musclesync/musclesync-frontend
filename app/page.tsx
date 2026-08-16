@@ -22,8 +22,10 @@ export default function Home() {
           scrollY > 50 ? "bg-black/80 backdrop-blur-md" : "bg-transparent"
         }`}
       >
-        <h1 className="text-2xl font-bold text-orange-500 animate-pulse cursor-pointer"
-            onClick={() => router.push("/")}>
+        <h1
+          className="text-2xl font-bold text-orange-500 animate-pulse cursor-pointer"
+          onClick={() => router.push("/")}
+        >
           MuscleSync
         </h1>
 
