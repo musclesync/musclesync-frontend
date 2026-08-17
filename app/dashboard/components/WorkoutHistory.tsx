@@ -1,4 +1,5 @@
-"use client";
+const history = data ?? [];
+"use client"; 
 
 import { useEffect, useState } from "react";
 

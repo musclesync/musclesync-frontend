@@ -1,6 +1,11 @@
 "use client";
 
-import { Line } from "react-chartjs-2";
+import dynamic from "next/dynamic";
+
+const Line = dynamic(() => import("react-chartjs-2").then(mod => mod.Line), {
+  ssr: false,
+});
+
 import {
   Chart as ChartJS,
   LineElement,
@@ -21,7 +26,7 @@ ChartJS.register(
 );
 
 interface ProgressChartsProps {
-  weeklyVolume?: number[]; // ⭐ OPSİYONEL
+  weeklyVolume?: number[];
 }
 
 export default function ProgressCharts({ weeklyVolume = [0, 0, 0, 0] }: ProgressChartsProps) {
