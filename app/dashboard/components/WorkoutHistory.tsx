@@ -1,21 +1,33 @@
-const history = data ?? [];
-"use client"; 
+"use client";
 
 import { useEffect, useState } from "react";
 
 export default function WorkoutHistory() {
-  const [history, setHistory] = useState<any>(null);
+  const [history, setHistory] = useState<any[]>([]);
 
   useEffect(() => {
     async function load() {
-      const res = await fetch("/api/history");
-      const json = await res.json();
-      setHistory(json.sessions);
+      try {
+        const res = await fetch("/api/history");
+        const json = await res.json();
+
+        // Default değer burada olmalı — "use client" ÜSTÜNDE DEĞİL
+        setHistory(json.sessions ?? []);
+      } catch (err) {
+        console.error("History fetch failed:", err);
+        setHistory([]);
+      }
     }
     load();
   }, []);
 
-  if (!history) return <p className="text-gray-400">Loading history...</p>;
+  if (!history.length) {
+    return (
+      <p className="text-gray-400">
+        No workout history available.
+      </p>
+    );
+  }
 
   return (
     <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl">
