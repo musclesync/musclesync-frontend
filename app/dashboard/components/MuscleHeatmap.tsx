@@ -2,16 +2,27 @@
 
 import { useEffect, useState } from "react";
 
+type Muscles = {
+  shoulders?: number;
+  chest?: number;
+  abs?: number;
+  obliques?: number;
+  biceps?: number;
+  triceps?: number;
+  forearms?: number;
+  quads?: number;
+  hamstrings?: number;
+  calves?: number;
+};
+
 export default function MuscleHeatmap() {
-  const [muscles, setMuscles] = useState<any>(null);
+  const [muscles, setMuscles] = useState<Muscles | null>(null);
 
   useEffect(() => {
     async function load() {
       try {
         const res = await fetch("/api/muscles");
         const json = await res.json();
-
-        // MUSCLES YOKSA BOŞ NESNE VER → PATLAMAYI ÖNLER
         setMuscles(json.muscles ?? {});
       } catch (err) {
         console.error("Muscle API failed:", err);
@@ -21,10 +32,9 @@ export default function MuscleHeatmap() {
     load();
   }, []);
 
-  // DOM ERİŞİMİ GÜVENLİ HALE GETİRİLDİ
   const safeApplyColor = (id: string, value: number | undefined) => {
-    if (typeof window === "undefined") return; // SSR fallback koruması
-    if (value === undefined) return; // muscles null ise koruma
+    if (typeof window === "undefined") return;
+    if (value === undefined) return;
 
     const intensity = Math.floor(value * 255);
     const color = `rgba(${intensity}, 60, 20, 0.9)`;
