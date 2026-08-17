@@ -76,101 +76,101 @@ export default function MuscleHeatmap() {
 
       <div className="flex justify-center">
         <svg
-          width="320"
-          height="720"
-          viewBox="0 0 320 720"
+          width="360"
+          height="760"
+          viewBox="0 0 360 760"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* HEAD + NECK (dekoratif, renklendirmiyoruz) */}
-          <circle cx="160" cy="60" r="35" fill="#111111" />
-          <rect x="140" y="95" width="40" height="40" rx="20" fill="#111111" />
+          {/* HEAD + NECK (dekoratif) */}
+          <circle cx="180" cy="70" r="50" fill="#0b0b0f" />
+          <rect x="150" y="115" width="60" height="40" rx="20" fill="#0b0b0f" />
 
-          {/* SHOULDERS */}
+          {/* UPPER TORSO – SHOULDERS */}
           <path
             id="shoulders"
-            d="M80 120 C60 160 60 190 80 220 L240 220 C260 190 260 160 240 120 Z"
+            d="M60 160 C40 210 40 250 70 280 L290 280 C320 250 320 210 300 160 Z"
           />
 
           {/* CHEST */}
           <path
             id="chest"
-            d="M100 220 L220 220 L240 300 L80 300 Z"
+            d="M100 280 L260 280 L285 360 L75 360 Z"
           />
 
           {/* ABS */}
           <path
             id="abs"
-            d="M120 300 L200 300 L200 400 L120 400 Z"
+            d="M130 360 L230 360 L230 470 L130 470 Z"
           />
 
           {/* OBLIQUES */}
           <path
             id="obliques-left"
-            d="M80 300 L120 300 L120 400 L60 370 Z"
+            d="M75 360 L130 360 L130 470 L45 430 Z"
           />
           <path
             id="obliques-right"
-            d="M200 300 L240 300 L260 370 L200 400 Z"
+            d="M230 360 L285 360 L315 430 L230 470 Z"
           />
 
-          {/* BICEPS */}
+          {/* ARMS – BICEPS */}
           <path
             id="biceps-left"
-            d="M60 220 L40 300 L60 360 L90 300 Z"
+            d="M55 280 L25 360 L55 430 L90 360 Z"
           />
           <path
             id="biceps-right"
-            d="M260 220 L280 300 L260 360 L230 300 Z"
+            d="M305 280 L335 360 L305 430 L270 360 Z"
           />
 
-          {/* TRICEPS */}
+          {/* ARMS – TRICEPS */}
           <path
             id="triceps-left"
-            d="M40 300 L30 370 L70 370 L70 340 Z"
+            d="M25 360 L10 430 L60 430 L60 390 Z"
           />
           <path
             id="triceps-right"
-            d="M280 300 L290 370 L250 370 L250 340 Z"
+            d="M335 360 L350 430 L300 430 L300 390 Z"
           />
 
           {/* FOREARMS */}
           <path
             id="forearm-left"
-            d="M30 370 L20 460 L70 460 L70 370 Z"
+            d="M10 430 L10 540 L70 540 L70 430 Z"
           />
           <path
             id="forearm-right"
-            d="M290 370 L300 460 L250 460 L250 370 Z"
+            d="M350 430 L350 540 L290 540 L290 430 Z"
           />
 
-          {/* QUADS */}
+          {/* LEGS – QUADS */}
           <path
             id="quads-left"
-            d="M120 400 L160 400 L160 540 L120 540 Z"
+            d="M130 470 L170 470 L170 620 L130 620 Z"
           />
           <path
             id="quads-right"
-            d="M160 400 L200 400 L200 540 L160 540 Z"
+            d="M170 470 L210 470 L210 620 L170 620 Z"
           />
 
-          {/* HAMSTRINGS */}
+          {/* LEGS – HAMSTRINGS */}
           <path
             id="hamstrings-left"
-            d="M120 540 L160 540 L160 630 L120 630 Z"
+            d="M130 620 L170 620 L170 700 L130 700 Z"
           />
           <path
             id="hamstrings-right"
-            d="M160 540 L200 540 L200 630 L160 630 Z"
+            d="M170 620 L210 620 L210 700 L170 700 Z"
           />
 
-          {/* CALVES */}
+          {/* LEGS – CALVES */}
           <path
             id="calves-left"
-            d="M120 630 L160 630 L160 710 L120 710 Z"
+            d="M130 700 L170 700 L170 760 L130 760 Z"
           />
           <path
             id="calves-right"
-            d="M160 630 L200 630 L200 710 L160 710 Z"
+            d="M170 700 L210 700 L210 760 L170 760 Z"
           />
         </svg>
       </div>
