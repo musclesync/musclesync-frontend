@@ -76,28 +76,102 @@ export default function MuscleHeatmap() {
 
       <div className="flex justify-center">
         <svg
-          width="300"
-          height="600"
-          viewBox="0 0 300 600"
+          width="320"
+          height="720"
+          viewBox="0 0 320 720"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path id="shoulders" d="M120 60 C90 80 90 120 120 140 L180 140 C210 120 210 80 180 60 Z" />
-          <path id="chest" d="M120 140 L180 140 L200 200 L100 200 Z" />
-          <path id="abs" d="M120 200 L180 200 L180 300 L120 300 Z" />
-          <path id="obliques-left" d="M100 200 L120 200 L120 300 L90 280 Z" />
-          <path id="obliques-right" d="M180 200 L200 200 L210 280 L180 300 Z" />
-          <path id="biceps-left" d="M90 140 L70 200 L90 240 L110 200 Z" />
-          <path id="biceps-right" d="M210 140 L230 200 L210 240 L190 200 Z" />
-          <path id="triceps-left" d="M70 200 L60 260 L90 260 L90 240 Z" />
-          <path id="triceps-right" d="M230 200 L240 260 L210 260 L210 240 Z" />
-          <path id="forearm-left" d="M60 260 L50 330 L90 330 L90 260 Z" />
-          <path id="forearm-right" d="M240 260 L250 330 L210 330 L210 260 Z" />
-          <path id="quads-left" d="M120 300 L150 300 L150 420 L120 420 Z" />
-          <path id="quads-right" d="M150 300 L180 300 L180 420 L150 420 Z" />
-          <path id="hamstrings-left" d="M120 420 L150 420 L150 500 L120 500 Z" />
-          <path id="hamstrings-right" d="M150 420 L180 420 L180 500 L150 500 Z" />
-          <path id="calves-left" d="M120 500 L150 500 L150 580 L120 580 Z" />
-          <path id="calves-right" d="M150 500 L180 500 L180 580 L150 580 Z" />
+          {/* HEAD + NECK (dekoratif, renklendirmiyoruz) */}
+          <circle cx="160" cy="60" r="35" fill="#111111" />
+          <rect x="140" y="95" width="40" height="40" rx="20" fill="#111111" />
+
+          {/* SHOULDERS */}
+          <path
+            id="shoulders"
+            d="M80 120 C60 160 60 190 80 220 L240 220 C260 190 260 160 240 120 Z"
+          />
+
+          {/* CHEST */}
+          <path
+            id="chest"
+            d="M100 220 L220 220 L240 300 L80 300 Z"
+          />
+
+          {/* ABS */}
+          <path
+            id="abs"
+            d="M120 300 L200 300 L200 400 L120 400 Z"
+          />
+
+          {/* OBLIQUES */}
+          <path
+            id="obliques-left"
+            d="M80 300 L120 300 L120 400 L60 370 Z"
+          />
+          <path
+            id="obliques-right"
+            d="M200 300 L240 300 L260 370 L200 400 Z"
+          />
+
+          {/* BICEPS */}
+          <path
+            id="biceps-left"
+            d="M60 220 L40 300 L60 360 L90 300 Z"
+          />
+          <path
+            id="biceps-right"
+            d="M260 220 L280 300 L260 360 L230 300 Z"
+          />
+
+          {/* TRICEPS */}
+          <path
+            id="triceps-left"
+            d="M40 300 L30 370 L70 370 L70 340 Z"
+          />
+          <path
+            id="triceps-right"
+            d="M280 300 L290 370 L250 370 L250 340 Z"
+          />
+
+          {/* FOREARMS */}
+          <path
+            id="forearm-left"
+            d="M30 370 L20 460 L70 460 L70 370 Z"
+          />
+          <path
+            id="forearm-right"
+            d="M290 370 L300 460 L250 460 L250 370 Z"
+          />
+
+          {/* QUADS */}
+          <path
+            id="quads-left"
+            d="M120 400 L160 400 L160 540 L120 540 Z"
+          />
+          <path
+            id="quads-right"
+            d="M160 400 L200 400 L200 540 L160 540 Z"
+          />
+
+          {/* HAMSTRINGS */}
+          <path
+            id="hamstrings-left"
+            d="M120 540 L160 540 L160 630 L120 630 Z"
+          />
+          <path
+            id="hamstrings-right"
+            d="M160 540 L200 540 L200 630 L160 630 Z"
+          />
+
+          {/* CALVES */}
+          <path
+            id="calves-left"
+            d="M120 630 L160 630 L160 710 L120 710 Z"
+          />
+          <path
+            id="calves-right"
+            d="M160 630 L200 630 L200 710 L160 710 Z"
+          />
         </svg>
       </div>
     </div>
