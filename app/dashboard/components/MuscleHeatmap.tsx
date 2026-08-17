@@ -193,20 +193,21 @@ export default function MuscleHeatmap() {
             The anatomy is structured as flat vector muscle regions without gradients or symbolic shortcuts, allowing precise per-muscle activation tinting inside a Next.js dashboard.
           </p>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-400">SVG style</p>
-              <p className="mt-2 text-sm text-slate-200">Flat fills, inline attributes, no external assets.</p>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-400">DOM coloring</p>
-              <p className="mt-2 text-sm text-slate-200">Safe `document.getElementById(id).style.fill` updates after hydration.</p>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Score support</p>
-              <p className="mt-2 text-sm text-slate-200">Accepts both 0–1 and 0–100 muscle activation payloads.</p>
-            </div>
-          </div>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3 auto-rows-fr">
+  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+    <p className="text-xs uppercase tracking-[0.1em] text-slate-400">SVG style</p>
+    <p className="mt-2 text-sm text-slate-200">Flat fills, inline attributes, no external assets.</p>
+  </div>
+  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+    <p className="text-xs uppercase tracking-[0.1em] text-slate-400">DOM coloring</p>
+    <p className="mt-2 text-sm text-slate-200">Safe document.getElementById(id).style.fill updates after hydration.</p>
+  </div>
+  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+    <p className="text-xs uppercase tracking-[0.1em] text-slate-400">Score support</p>
+    <p className="mt-2 text-sm text-slate-200">Accepts both 0–1 and 0–100 muscle activation payloads.</p>
+  </div>
+</div>
+
         </div>
 
         <div className="rounded-[2rem] border border-white/10 bg-[#0a0f18] p-4">
