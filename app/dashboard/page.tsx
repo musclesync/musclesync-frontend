@@ -66,7 +66,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 w-full max-w-5xl mt-10">
-        <ProgressCharts />
+        <ProgressCharts weeklyVolume={[12000, 13500, 14200, 15800]} />
         <WorkoutHistory />
       </div>
     </main>
