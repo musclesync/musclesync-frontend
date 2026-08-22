@@ -20,14 +20,13 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  // Eğer Supabase linki doğru geldiyse type=recovery ve token dolu olur
   const valid = type === "recovery" && token;
 
   const handleReset = async () => {
     setLoading(true);
     setMessage("");
 
-    const { data, error } = await supabase.auth.updateUser({
+    const { error } = await supabase.auth.updateUser({
       password: password,
     });
 
@@ -35,3 +34,29 @@ export default function ResetPasswordPage() {
 
     if (error) {
       setMessage("Şifre güncellenemedi: " + error.message);
+      return;
+    }
+
+    setMessage("Şifre başarıyla güncellendi!");
+    setTimeout(() => {
+      router.push("/login");
+    }, 1500);
+  };
+
+  if (!valid) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-white">
+        <p>Geçersiz veya eksik şifre yenileme bağlantısı.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white p-6">
+      <h1 className="text-3xl font-semibold mb-6">Yeni Şifre Belirle</h1>
+
+      <div className="flex flex-col gap-4 w-full max-w-sm">
+        <input
+          type="password"
+          placeholder="Yeni şifre"
+          className="rounded-xl bg-white/10 px
