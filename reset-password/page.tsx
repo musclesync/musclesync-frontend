@@ -59,4 +59,21 @@ export default function ResetPasswordPage() {
         <input
           type="password"
           placeholder="Yeni şifre"
-          className="rounded-xl bg-white/10 px
+          className="rounded-xl bg-white/10 px-4 py-2"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button
+          onClick={handleReset}
+          disabled={loading || password.length < 6}
+          className="rounded-xl bg-red-500 px-4 py-2 font-semibold disabled:opacity-50"
+        >
+          {loading ? "Güncelleniyor..." : "Şifreyi Güncelle"}
+        </button>
+
+        {message && <p className="text-red-400 text-sm">{message}</p>}
+      </div>
+    </div>
+  );
+}
