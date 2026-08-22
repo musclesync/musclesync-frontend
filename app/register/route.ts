@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
-// Basit bir in-memory database (gerçek DB bağlayana kadar)
-const users: { email: string; password: string }[] = [];
+// Geçici in-memory database (deploy sonrası sıfırlanır)
+const users: { email: string; passwordHash: string }[] = [];
 
 export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
 
-    // Alan kontrolü
     if (!email || !password) {
       return NextResponse.json(
         { error: "E-posta ve şifre gereklidir." },
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // Kullanıcı zaten var mı?
+    // Kullanıcı var mı?
     const exists = users.find((u) => u.email === email);
     if (exists) {
       return NextResponse.json(
@@ -24,8 +24,11 @@ export async function POST(req: Request) {
       );
     }
 
+    // Şifreyi hashle
+    const passwordHash = await bcrypt.hash(password, 10);
+
     // Kullanıcıyı oluştur
-    users.push({ email, password });
+    users.push({ email, passwordHash });
 
     return NextResponse.json(
       { success: true, message: "Kayıt başarılı." },
