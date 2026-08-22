@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
-// Geçici in-memory database (deploy sonrası sıfırlanır)
+// Geçici RAM database
 const users: { email: string; passwordHash: string }[] = [];
 
 export async function POST(req: Request) {
@@ -15,7 +15,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Kullanıcı var mı?
     const exists = users.find((u) => u.email === email);
     if (exists) {
       return NextResponse.json(
@@ -24,10 +23,8 @@ export async function POST(req: Request) {
       );
     }
 
-    // Şifreyi hashle
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // Kullanıcıyı oluştur
     users.push({ email, passwordHash });
 
     return NextResponse.json(
