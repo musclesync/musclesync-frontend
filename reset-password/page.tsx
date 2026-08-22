@@ -34,4 +34,4 @@ export default function ResetPasswordPage() {
     setLoading(false);
 
     if (error) {
-      setMessage("Şifre güncellenemedi: " + error
+      setMessage("Şifre güncellenemedi: " + error.message);
