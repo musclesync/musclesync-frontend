@@ -99,7 +99,9 @@ export function getMuscleHeatColor(intensity: number) {
   const lightness = 8 + safe * 49;
   const alpha = 0.18 + safe * 0.82;
 
-  return `hsla(${hue.toFixed(1)} ${saturation.toFixed(1)}% ${lightness.toFixed(1)}% / ${alpha.toFixed(2)})`;
+  return `hsla(${hue.toFixed(1)} ${saturation.toFixed(1)}% ${lightness.toFixed(
+    1
+  )}% / ${alpha.toFixed(2)})`;
 }
 
 export default function MuscleHeatmap() {
@@ -174,8 +176,16 @@ export default function MuscleHeatmap() {
   }, [muscles]);
 
   return (
-    <section className="overflow-hidden rounded-[2.4rem] border border-white/15 bg-[radial-gradient(circle_at_top,#1b2436_0%,#05070c_55%,#020309_100%)] p-6 text-white shadow-[0_28px_80px_rgba(0,0,0,0.65)] lg:p-10">
-      <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+    <section className="max-w-[1600px] mx-auto w-full overflow-hidden rounded-[2.4rem] border border-white/15 bg-[radial-gradient(circle_at_top,#1b2436_0%,#05070c_55%,#020309_100%)] p-6 text-white shadow-[0_28px_80px_rgba(0,0,0,0.65)] lg:p-10">
+      {/* ANA SAYFAYA DÖN BUTONU */}
+      <a
+        href="/"
+        className="inline-block mb-6 rounded-xl bg-white/10 px-4 py-2 text-sm text-white hover:bg-white/20 transition"
+      >
+        ← Ana sayfaya dön
+      </a>
+
+      <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-[1.2fr_0.8fr] lg:items-start">
         <div>
           <div className="mb-5 flex flex-wrap items-center gap-3">
             <span className="rounded-full border border-red-400/40 bg-red-500/15 px-3.5 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-red-100 shadow-[0_0_0_1px_rgba(0,0,0,0.35)]">
@@ -193,7 +203,7 @@ export default function MuscleHeatmap() {
             The anatomy is structured as flat vector muscle regions without gradients or symbolic shortcuts, allowing precise per-muscle activation tinting inside a Next.js dashboard.
           </p>
 
-          <div className="mt-6 grid gap-6 sm:grid-cols-3 auto-rows-fr">
+          <div className="mt-6 grid gap-6 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 auto-rows-fr">
             <div className="rounded-3xl border border-white/15 bg-white/8 p-5 backdrop-blur-xl shadow-[0_10px_32px_rgba(0,0,0,0.45)]">
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-slate-200/90">SVG style</p>
               <p className="mt-2 text-sm text-slate-100/95">Flat fills, inline attributes, no external assets.</p>
@@ -413,7 +423,9 @@ export default function MuscleHeatmap() {
   const lightness = 8 + safe * 49;
   const alpha = 0.18 + safe * 0.82;
 
-  return \`hsla(\${hue.toFixed(1)} \${saturation.toFixed(1)}% \${lightness.toFixed(1)}% / \${alpha.toFixed(2)})\`;
+  return \`hsla(\${hue.toFixed(1)} \${saturation.toFixed(1)}% \${lightness.toFixed(
+    1
+  )}% / \${alpha.toFixed(2)})\`;
 }`}</code>
           </pre>
           <p className="mt-3 text-sm leading-7 text-slate-300">
