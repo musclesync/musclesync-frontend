@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
@@ -22,7 +24,6 @@ export default function ResetPasswordPage() {
 
   const valid = type === "recovery" && token;
 
-  // Supabase'ın bazı projelerde token'i manuel set etmesi gerekir
   useEffect(() => {
     if (valid) {
       supabase.auth.setSession({
@@ -48,7 +49,6 @@ export default function ResetPasswordPage() {
     }
 
     setMessage("Şifre başarıyla güncellendi!");
-
     setTimeout(() => {
       router.push("/login");
     }, 1500);
