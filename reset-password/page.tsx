@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
@@ -22,12 +22,22 @@ export default function ResetPasswordPage() {
 
   const valid = type === "recovery" && token;
 
+  // Supabase'ın bazı projelerde token'i manuel set etmesi gerekir
+  useEffect(() => {
+    if (valid) {
+      supabase.auth.setSession({
+        access_token: token!,
+        refresh_token: token!,
+      });
+    }
+  }, [valid, token]);
+
   const handleReset = async () => {
     setLoading(true);
     setMessage("");
 
     const { error } = await supabase.auth.updateUser({
-      password: password,
+      password,
     });
 
     setLoading(false);
@@ -38,6 +48,7 @@ export default function ResetPasswordPage() {
     }
 
     setMessage("Şifre başarıyla güncellendi!");
+
     setTimeout(() => {
       router.push("/login");
     }, 1500);
