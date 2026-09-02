@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 // FORCE REBUILD REAL CHANGE
 // force rebuild
 
