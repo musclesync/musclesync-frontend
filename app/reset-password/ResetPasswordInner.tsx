@@ -23,15 +23,23 @@ export default function ResetPasswordInner() {
   const valid = type === "recovery" && token;
 
   useEffect(() => {
-    if (valid) {
-      supabase.auth.setSession({
-        access_token: token!,
-        refresh_token: token!,
-      });
-    }
-  }, [valid, token]);
+    if (!valid) return;
+
+    // Supabase dokümanına göre en doğru yöntem:
+    // PASSWORD_RECOVERY event ile session zaten kuruluyor.
+    supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === "PASSWORD_RECOVERY") {
+        // Burada zaten session var, ekstra setSession yapmana gerek yok.
+      }
+    });
+  }, [valid]);
 
   const handleReset = async () => {
+    if (!valid) {
+      setMessage("Geçersiz veya eksik şifre yenileme bağlantısı.");
+      return;
+    }
+
     setLoading(true);
     setMessage("");
 

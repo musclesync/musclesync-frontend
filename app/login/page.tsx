@@ -1,72 +1,99 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export default function LoginPage() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  const handleLogin = async () => {
     setLoading(true);
-    setError(null);
+    setMessage("");
 
-    try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-      const data = await res.json();
+    setLoading(false);
 
-      if (!res.ok) {
-        throw new Error(data.error || "Giriş başarısız");
-      }
-
-      router.push("/dashboard");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Bilinmeyen hata");
-    } finally {
-      setLoading(false);
+    if (error) {
+      setMessage("Giriş yapılamadı: " + error.message);
+      return;
     }
-  }
+
+    setMessage("Giriş başarılı!");
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setMessage("Lütfen önce email adresinizi girin.");
+      return;
+    }
+
+    setLoading(true);
+    setMessage("");
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: "https://www.musclesync.net/reset-password",
+    });
+
+    setLoading(false);
+
+    if (error) {
+      setMessage("Şifre sıfırlama maili gönderilemedi: " + error.message);
+      return;
+    }
+
+    setMessage("Şifre sıfırlama maili gönderildi! Lütfen emailinizi kontrol edin.");
+  };
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center bg-black text-white p-6">
-      <h1 className="text-3xl font-semibold mb-6">Giriş Yap</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white p-6">
+      <h1 className="text-3xl font-semibold mb-6">MuscleSync Giriş</h1>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full max-w-sm">
+      <div className="flex flex-col gap-4 w-full max-w-sm">
         <input
           type="email"
-          placeholder="E-posta"
+          placeholder="Email"
+          className="rounded-xl bg-white/10 px-4 py-2"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="rounded-xl bg-white/10 px-4 py-2"
         />
 
         <input
           type="password"
           placeholder="Şifre"
+          className="rounded-xl bg-white/10 px-4 py-2"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="rounded-xl bg-white/10 px-4 py-2"
         />
 
-        {error && <p className="text-red-400 text-sm">{error}</p>}
-
         <button
-          type="submit"
+          onClick={handleLogin}
           disabled={loading}
           className="rounded-xl bg-red-500 px-4 py-2 font-semibold disabled:opacity-50"
         >
-          {loading ? "Giriş yapılıyor…" : "Giriş Yap"}
+          {loading ? "İşleniyor..." : "Giriş Yap"}
         </button>
-      </form>
-    </section>
+
+        <button
+          onClick={handleForgotPassword}
+          className="text-sm text-blue-400 underline"
+        >
+          Şifremi Unuttum
+        </button>
+
+        {message && <p className="text-red-400 text-sm">{message}</p>}
+      </div>
+    </div>
   );
 }
