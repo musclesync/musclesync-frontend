@@ -1,11 +1,4 @@
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-// FORCE REBUILD REAL CHANGE
-// force rebuild
-
 "use client";
-
-export const dynamic = "force-dynamic";
 
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -16,7 +9,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-export default function ResetPasswordPage() {
+export default function ResetPasswordInner() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
